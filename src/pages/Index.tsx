@@ -102,89 +102,33 @@ export default function Index() {
   return (
     <div className="min-h-screen">
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3 bg-white px-4 py-2 rounded-lg">
-            <img src="https://cdn.poehali.dev/files/IMG_1080.PNG" alt="Русская Фантазия" className="h-10 w-auto" />
+        <div className="container mx-auto px-6 py-3">
+          <div className="flex items-center justify-between gap-6">
+            <div className="flex-shrink-0">
+              <img src="https://cdn.poehali.dev/files/IMG_1080.PNG" alt="Русская Фантазия" className="h-12 w-auto" />
+            </div>
+            <div className="hidden lg:flex items-center gap-8 flex-1 justify-center">
+              <a href="#catalog" className="text-sm font-medium hover:text-primary transition-colors whitespace-nowrap">Арендатору</a>
+              <a href="#routes" className="text-sm font-medium hover:text-primary transition-colors whitespace-nowrap">Маршруты</a>
+              <a href="#booking" className="text-sm font-medium hover:text-primary transition-colors whitespace-nowrap">Бронировать</a>
+              <a href="#pricing" className="text-sm font-medium hover:text-primary transition-colors whitespace-nowrap">Стоимость</a>
+            </div>
+            <Button variant="default" className="gap-2 whitespace-nowrap flex-shrink-0">
+              <Icon name="Phone" size={16} />
+              <span className="hidden sm:inline">+7 (495) 123-45-67</span>
+              <span className="sm:hidden">Позвонить</span>
+            </Button>
           </div>
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#catalog" className="text-sm font-medium hover:text-primary transition-colors">Автопарк</a>
-            <a href="#booking" className="text-sm font-medium hover:text-primary transition-colors">Бронирование</a>
-            <a href="#routes" className="text-sm font-medium hover:text-primary transition-colors">Маршруты из Москвы</a>
-            <a href="#reviews" className="text-sm font-medium hover:text-primary transition-colors">Отзывы</a>
-          </div>
-          <Button variant="default" size="lg" className="gap-2">
-            <Icon name="Phone" size={18} />
-            +7 (495) 123-45-67
-          </Button>
         </div>
       </nav>
 
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-muted">
-        <div className="absolute inset-0 z-0 opacity-20">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <img 
-            src="https://cdn.poehali.dev/projects/cdb115cf-04fc-4b69-a392-036f0de79f80/files/2d6d0094-11f1-4a4a-a103-9a6bd7c5de2f.jpg" 
-            alt="Карта России" 
-            className="w-full h-full object-cover"
+            src="https://cdn.poehali.dev/files/IMG_1122.PNG" 
+            alt="Русская Фантазия" 
+            className="w-full h-full object-contain object-center"
           />
-        </div>
-        <div className="container mx-auto px-4 z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-in">
-              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-6">
-                <Icon name="MapPin" size={20} className="text-primary" />
-                <span className="text-sm font-medium">Старт из Москвы</span>
-              </div>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Путешествуй<br/>по России<br/>
-                <span className="text-gradient">на своих колёсах</span>
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-muted-foreground max-w-2xl">
-                Hyundai Grand Starex для больших компаний и семей. 
-                Комфортные минивэны от 4 000 ₽/сутки.
-              </p>
-              <div className="flex gap-4 flex-wrap">
-                <Button size="lg" className="gap-2 text-lg px-8 shadow-lg shadow-primary/20" onClick={() => document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' })}>
-                  <Icon name="Car" size={20} />
-                  Выбрать Starex
-                </Button>
-                <Button size="lg" variant="outline" className="gap-2 text-lg px-8" onClick={() => document.getElementById('routes')?.scrollIntoView({ behavior: 'smooth' })}>
-                  <Icon name="Map" size={20} />
-                  Готовые маршруты
-                </Button>
-              </div>
-              <div className="mt-12 grid grid-cols-3 gap-6">
-                <div>
-                  <div className="text-3xl font-bold text-primary mb-1">15+</div>
-                  <div className="text-sm text-muted-foreground">маршрутов</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-secondary mb-1">7-8</div>
-                  <div className="text-sm text-muted-foreground">мест</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-accent mb-1">2024</div>
-                  <div className="text-sm text-muted-foreground">год авто</div>
-                </div>
-              </div>
-            </div>
-            <div className="relative animate-scale-in">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://cdn.poehali.dev/projects/cdb115cf-04fc-4b69-a392-036f0de79f80/files/04ddf242-cd7c-45bd-af29-f78dbe1aa973.jpg" 
-                  alt="Москва" 
-                  className="w-full h-auto"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="flex items-center gap-2 text-white">
-                    <Icon name="MapPin" size={24} className="text-primary" />
-                    <span className="text-2xl font-bold">Красная площадь, Москва</span>
-                  </div>
-                  <p className="text-white/80 mt-2">Начало всех маршрутов</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -310,7 +254,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section id="booking" className="py-20 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+      <section id="pricing" className="py-20 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Badge className="mb-4" variant="outline">Онлайн бронирование</Badge>
@@ -537,9 +481,7 @@ export default function Index() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <div className="bg-white px-4 py-2 rounded-lg inline-block mb-4">
-                <img src="https://cdn.poehali.dev/files/IMG_1080.PNG" alt="Русская Фантазия" className="h-10 w-auto" />
-              </div>
+              <img src="https://cdn.poehali.dev/files/IMG_1080.PNG" alt="Русская Фантазия" className="h-12 w-auto mb-4" />
               <p className="text-sm text-muted-foreground">Путешествия по России на Hyundai Grand Starex</p>
               <div className="mt-4 flex gap-2">
                 <Badge variant="outline">Москва</Badge>
