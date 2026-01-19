@@ -10,18 +10,186 @@ import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
 const routes = [
-  { id: 1, city: 'Казань', distance: 800, days: '2-3 дня', coords: { x: 52, y: 48 }, priceStandard: 8000, priceComfort: 12000, pricePremium: 16000 },
-  { id: 2, city: 'Санкт-Петербург', distance: 700, days: '2-3 дня', coords: { x: 30, y: 35 }, priceStandard: 7000, priceComfort: 10000, pricePremium: 14000 },
-  { id: 3, city: 'Сочи', distance: 1600, days: '4-5 дней', coords: { x: 45, y: 70 }, priceStandard: 16000, priceComfort: 24000, pricePremium: 32000 },
-  { id: 4, city: 'Екатеринбург', distance: 1800, days: '4-6 дней', coords: { x: 65, y: 45 }, priceStandard: 18000, priceComfort: 27000, pricePremium: 36000 },
-  { id: 5, city: 'Нижний Новгород', distance: 420, days: '1-2 дня', coords: { x: 48, y: 44 }, priceStandard: 4200, priceComfort: 6000, pricePremium: 8400 },
-  { id: 6, city: 'Ярославль', distance: 270, days: '1 день', coords: { x: 42, y: 40 }, priceStandard: 2700, priceComfort: 4000, pricePremium: 5400 },
-  { id: 7, city: 'Новосибирск', distance: 3300, days: '8-10 дней', coords: { x: 78, y: 50 }, priceStandard: 33000, priceComfort: 50000, pricePremium: 66000 },
-  { id: 8, city: 'Краснодар', distance: 1350, days: '3-4 дня', coords: { x: 43, y: 68 }, priceStandard: 13500, priceComfort: 20000, pricePremium: 27000 },
-  { id: 9, city: 'Владивосток', distance: 9200, days: '20-25 дней', coords: { x: 95, y: 58 }, priceStandard: 92000, priceComfort: 138000, pricePremium: 184000 },
-  { id: 10, city: 'Воронеж', distance: 520, days: '1-2 дня', coords: { x: 44, y: 52 }, priceStandard: 5200, priceComfort: 7800, pricePremium: 10400 },
-  { id: 11, city: 'Ростов-на-Дону', distance: 1100, days: '3 дня', coords: { x: 44, y: 62 }, priceStandard: 11000, priceComfort: 16500, pricePremium: 22000 },
-  { id: 12, city: 'Иркутск', distance: 5200, days: '12-15 дней', coords: { x: 88, y: 52 }, priceStandard: 52000, priceComfort: 78000, pricePremium: 104000 },
+  { 
+    id: 1, 
+    city: 'Казань', 
+    distance: 800, 
+    days: '2-3 дня', 
+    coords: { x: 49, y: 56 }, 
+    priceStandard: 8000, 
+    priceComfort: 12000, 
+    pricePremium: 16000,
+    images: [
+      'https://images.unsplash.com/photo-1597655601841-214a4cfe8b2c?w=800',
+      'https://images.unsplash.com/photo-1585869284839-13c5e9f41165?w=800',
+      'https://images.unsplash.com/photo-1612422656768-d5e4ec31fac0?w=800'
+    ]
+  },
+  { 
+    id: 2, 
+    city: 'Санкт-Петербург', 
+    distance: 700, 
+    days: '2-3 дня', 
+    coords: { x: 30, y: 60 }, 
+    priceStandard: 7000, 
+    priceComfort: 10000, 
+    pricePremium: 14000,
+    images: [
+      'https://images.unsplash.com/photo-1564868705557-7195914a9f19?w=800',
+      'https://images.unsplash.com/photo-1556214983-3a99aafe6e4c?w=800',
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800'
+    ]
+  },
+  { 
+    id: 3, 
+    city: 'Сочи', 
+    distance: 1600, 
+    days: '4-5 дней', 
+    coords: { x: 40, y: 44 }, 
+    priceStandard: 16000, 
+    priceComfort: 24000, 
+    pricePremium: 32000,
+    images: [
+      'https://images.unsplash.com/photo-1612351990022-a0b8cdda9b36?w=800',
+      'https://images.unsplash.com/photo-1590077428593-a55bb07c4665?w=800',
+      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800'
+    ]
+  },
+  { 
+    id: 4, 
+    city: 'Екатеринбург', 
+    distance: 1800, 
+    days: '4-6 дней', 
+    coords: { x: 61, y: 57 }, 
+    priceStandard: 18000, 
+    priceComfort: 27000, 
+    pricePremium: 36000,
+    images: [
+      'https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800',
+      'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=800',
+      'https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=800'
+    ]
+  },
+  { 
+    id: 5, 
+    city: 'Нижний Новгород', 
+    distance: 420, 
+    days: '1-2 дня', 
+    coords: { x: 44, y: 56 }, 
+    priceStandard: 4200, 
+    priceComfort: 6000, 
+    pricePremium: 8400,
+    images: [
+      'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800',
+      'https://images.unsplash.com/photo-1590564762767-a4f65d7a0e2e?w=800',
+      'https://images.unsplash.com/photo-1568564321589-3e581d074e1b?w=800'
+    ]
+  },
+  { 
+    id: 6, 
+    city: 'Ярославль', 
+    distance: 270, 
+    days: '1 день', 
+    coords: { x: 40, y: 58 }, 
+    priceStandard: 2700, 
+    priceComfort: 4000, 
+    pricePremium: 5400,
+    images: [
+      'https://images.unsplash.com/photo-1588421357574-87938a86fa28?w=800',
+      'https://images.unsplash.com/photo-1584466129727-0c03db7f8bca?w=800',
+      'https://images.unsplash.com/photo-1541963058-d6c85b0c0b12?w=800'
+    ]
+  },
+  { 
+    id: 7, 
+    city: 'Новосибирск', 
+    distance: 3300, 
+    days: '8-10 дней', 
+    coords: { x: 83, y: 55 }, 
+    priceStandard: 33000, 
+    priceComfort: 50000, 
+    pricePremium: 66000,
+    images: [
+      'https://images.unsplash.com/photo-1577365876306-7f0f8e1fe6af?w=800',
+      'https://images.unsplash.com/photo-1568640363784-862693a0f9e9?w=800',
+      'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800'
+    ]
+  },
+  { 
+    id: 8, 
+    city: 'Краснодар', 
+    distance: 1350, 
+    days: '3-4 дня', 
+    coords: { x: 39, y: 46 }, 
+    priceStandard: 13500, 
+    priceComfort: 20000, 
+    pricePremium: 27000,
+    images: [
+      'https://images.unsplash.com/photo-1590172741945-fb8b08928fc6?w=800',
+      'https://images.unsplash.com/photo-1573655349936-de6bed86f839?w=800',
+      'https://images.unsplash.com/photo-1580982172477-50f3f7f1f89e?w=800'
+    ]
+  },
+  { 
+    id: 9, 
+    city: 'Владивосток', 
+    distance: 9200, 
+    days: '20-25 дней', 
+    coords: { x: 132, y: 43 }, 
+    priceStandard: 92000, 
+    priceComfort: 138000, 
+    pricePremium: 184000,
+    images: [
+      'https://images.unsplash.com/photo-1598894731111-be5d498c2eae?w=800',
+      'https://images.unsplash.com/photo-1585904881241-8e61ccf4b61c?w=800',
+      'https://images.unsplash.com/photo-1613561512598-7b1c04d9f196?w=800'
+    ]
+  },
+  { 
+    id: 10, 
+    city: 'Воронеж', 
+    distance: 520, 
+    days: '1-2 дня', 
+    coords: { x: 40, y: 52 }, 
+    priceStandard: 5200, 
+    priceComfort: 7800, 
+    pricePremium: 10400,
+    images: [
+      'https://images.unsplash.com/photo-1612200142110-9c0d5a57ef8f?w=800',
+      'https://images.unsplash.com/photo-1580991961581-f23db0ab6c9b?w=800',
+      'https://images.unsplash.com/photo-1582560475093-ba66accbc424?w=800'
+    ]
+  },
+  { 
+    id: 11, 
+    city: 'Ростов-на-Дону', 
+    distance: 1100, 
+    days: '3 дня', 
+    coords: { x: 40, y: 48 }, 
+    priceStandard: 11000, 
+    priceComfort: 16500, 
+    pricePremium: 22000,
+    images: [
+      'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800',
+      'https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?w=800',
+      'https://images.unsplash.com/photo-1551881192-d5c993936271?w=800'
+    ]
+  },
+  { 
+    id: 12, 
+    city: 'Иркутск', 
+    distance: 5200, 
+    days: '12-15 дней', 
+    coords: { x: 104, y: 52 }, 
+    priceStandard: 52000, 
+    priceComfort: 78000, 
+    pricePremium: 104000,
+    images: [
+      'https://images.unsplash.com/photo-1589802829985-817e51171b92?w=800',
+      'https://images.unsplash.com/photo-1552652494-5394207d418c?w=800',
+      'https://images.unsplash.com/photo-1594887226681-5749e88d8c91?w=800'
+    ]
+  },
 ];
 
 const vehicles = [
@@ -73,38 +241,37 @@ export default function Index() {
         </div>
       </nav>
 
-      <section className="relative min-h-[70vh] flex items-center pt-16" style={{
+      <section className="relative min-h-screen flex items-center justify-center pt-16" style={{
         backgroundImage: 'url(https://cdn.poehali.dev/files/IMG_1122.PNG)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
       }}>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-white"></div>
-        <div className="container mx-auto px-6 relative z-10 mt-auto pb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
-            <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-gray-200">
-              <Badge className="mb-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-base px-4 py-2">
-                <Icon name="MapPin" size={18} className="mr-2" />
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/20">
+              <Badge className="mb-4 bg-white/20 backdrop-blur-lg text-white text-sm px-4 py-2 border border-white/30">
+                <Icon name="MapPin" size={16} className="mr-2" />
                 Старт из Москвы
               </Badge>
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-700 via-blue-600 to-orange-500 bg-clip-text text-transparent leading-tight">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white drop-shadow-2xl leading-tight">
                 Путешествуй по всей России
               </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+              <p className="text-lg text-white/90 mb-8 leading-relaxed drop-shadow-lg">
                 12 готовых маршрутов с продуманными остановками. Возьмите комфортный транспорт и отправляйтесь в незабываемое путешествие!
               </p>
-              <div className="flex gap-4 flex-wrap">
-                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-lg px-8 h-14 shadow-lg" onClick={() => document.getElementById('routes')?.scrollIntoView({ behavior: 'smooth' })}>
-                  <Icon name="Map" size={22} className="mr-2" />
+              <div className="flex gap-4 justify-center flex-wrap">
+                <Button size="default" className="bg-white text-blue-700 hover:bg-blue-50 shadow-xl" onClick={() => document.getElementById('routes')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <Icon name="Map" size={18} className="mr-2" />
                   Выбрать маршрут
                 </Button>
-                <Button size="lg" variant="outline" className="text-lg px-8 h-14 border-2 border-blue-600 text-blue-600 hover:bg-blue-50" onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })}>
-                  <Icon name="Calculator" size={22} className="mr-2" />
-                  Рассчитать стоимость
+                <Button size="default" variant="outline" className="border-2 border-white text-white hover:bg-white/20 backdrop-blur-lg" onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <Icon name="Calculator" size={18} className="mr-2" />
+                  Рассчитать
                 </Button>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -142,11 +309,11 @@ export default function Index() {
                       {routes.length} городов
                     </Badge>
                   </div>
-                  <div className="relative w-full aspect-[2/1] bg-gradient-to-br from-slate-50 to-blue-50 rounded-xl overflow-hidden shadow-inner border border-blue-200">
-                    <svg viewBox="0 0 200 80" className="w-full h-full">
+                  <div className="relative w-full aspect-[2.2/1] bg-gradient-to-br from-blue-900 to-indigo-950 rounded-xl overflow-hidden shadow-inner border-2 border-blue-300">
+                    <svg viewBox="0 0 220 100" className="w-full h-full">
                       <defs>
                         <filter id="glow">
-                          <feGaussianBlur stdDeviation="0.8" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
                           <feMerge>
                             <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="SourceGraphic"/>
@@ -157,49 +324,45 @@ export default function Index() {
                           <stop offset="100%" stopColor="#dc2626" stopOpacity="0"/>
                         </radialGradient>
                         <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3"/>
-                          <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.8"/>
+                          <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.6"/>
+                          <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.9"/>
                         </linearGradient>
                       </defs>
                       
-                      <path d="M 25 50 L 20 42 L 18 32 L 20 24 L 26 18 L 34 15 L 45 13 L 58 12 L 72 12 L 88 13 L 105 15 L 122 18 L 138 23 L 152 30 L 162 38 L 170 46 L 175 54 L 178 62 L 175 68 L 168 72 L 155 74 L 138 75 L 120 74 L 100 72 L 80 68 L 60 63 L 42 57 L 30 52 Z" 
-                        fill="#e0f2fe" 
-                        stroke="#3b82f6" 
-                        strokeWidth="0.5" 
-                        strokeDasharray="1.5,0.8"
-                        opacity="0.3"
+                      <path d="M 15 60 L 12 50 L 10 38 L 10 28 L 13 20 L 18 14 L 25 10 L 35 8 L 48 7 L 62 7 L 78 8 L 95 10 L 112 13 L 128 17 L 143 22 L 156 28 L 168 36 L 178 45 L 186 54 L 192 63 L 196 72 L 198 80 L 196 86 L 190 90 L 180 92 L 165 93 L 148 92 L 130 90 L 110 87 L 88 82 L 68 76 L 48 69 L 32 63 L 20 58 Z" 
+                        fill="none" 
+                        stroke="#60a5fa" 
+                        strokeWidth="1.2" 
+                        opacity="0.6"
+                        filter="url(#glow)"
                       />
                       
-                      <path d="M 35 35 Q 40 33, 45 35" stroke="#60a5fa" strokeWidth="0.2" fill="none" opacity="0.2" />
-                      <path d="M 70 25 Q 75 23, 80 25" stroke="#60a5fa" strokeWidth="0.2" fill="none" opacity="0.2" />
-                      <path d="M 110 40 Q 115 38, 120 40" stroke="#60a5fa" strokeWidth="0.2" fill="none" opacity="0.2" />
-                      
-                      <circle cx="36" cy="38" r="5" fill="url(#moscowGlow)" className="animate-pulse" opacity="0.5" />
-                      <circle cx="36" cy="38" r="2.5" fill="#dc2626" filter="url(#glow)" />
-                      <circle cx="36" cy="38" r="1.2" fill="#ffffff" />
-                      <text x="36" y="33" textAnchor="middle" className="text-[2.8px] font-black fill-red-600">МОСКВА</text>
+                      <circle cx="37" cy="56" r="6" fill="url(#moscowGlow)" className="animate-pulse" opacity="0.7" />
+                      <circle cx="37" cy="56" r="3" fill="#dc2626" filter="url(#glow)" />
+                      <circle cx="37" cy="56" r="1.5" fill="#ffffff" />
+                      <text x="37" y="49" textAnchor="middle" className="text-[3.5px] font-black fill-white drop-shadow-lg">МОСКВА</text>
                       
                       {routes.map(route => (
                         <g key={route.id}>
                           <line 
-                            x1="36" 
-                            y1="38" 
-                            x2={route.coords.x * 1.5 + 6} 
-                            y2={route.coords.y * 0.7 + 5} 
+                            x1="37" 
+                            y1="56" 
+                            x2={route.coords.x} 
+                            y2={route.coords.y} 
                             stroke={selectedRoute?.id === route.id ? '#f59e0b' : hoveredRoute === route.id ? '#fbbf24' : 'url(#routeGradient)'} 
-                            strokeWidth={selectedRoute?.id === route.id ? "0.8" : hoveredRoute === route.id ? "0.6" : "0.3"}
-                            strokeDasharray="2,1.5" 
+                            strokeWidth={selectedRoute?.id === route.id ? "1.2" : hoveredRoute === route.id ? "1" : "0.5"}
+                            strokeDasharray="3,2" 
                             className="transition-all duration-500"
-                            opacity={selectedRoute?.id === route.id ? "0.8" : hoveredRoute === route.id ? "0.6" : "0.25"}
+                            opacity={selectedRoute?.id === route.id ? "0.9" : hoveredRoute === route.id ? "0.7" : "0.3"}
                             filter={selectedRoute?.id === route.id || hoveredRoute === route.id ? 'url(#glow)' : ''}
                           />
                           <circle 
-                            cx={route.coords.x * 1.5 + 6} 
-                            cy={route.coords.y * 0.7 + 5} 
-                            r={selectedRoute?.id === route.id ? "2.5" : hoveredRoute === route.id ? "2.2" : "1.6"}
-                            fill={selectedRoute?.id === route.id ? '#f59e0b' : hoveredRoute === route.id ? '#fbbf24' : '#3b82f6'}
+                            cx={route.coords.x} 
+                            cy={route.coords.y} 
+                            r={selectedRoute?.id === route.id ? "3.5" : hoveredRoute === route.id ? "3" : "2.2"}
+                            fill={selectedRoute?.id === route.id ? '#f59e0b' : hoveredRoute === route.id ? '#fbbf24' : '#60a5fa'}
                             stroke="#ffffff"
-                            strokeWidth="0.5"
+                            strokeWidth="0.8"
                             className="cursor-pointer transition-all duration-300"
                             filter="url(#glow)"
                             onMouseEnter={() => setHoveredRoute(route.id)}
@@ -209,19 +372,19 @@ export default function Index() {
                           {hoveredRoute === route.id && (
                             <>
                               <rect
-                                x={route.coords.x * 1.5 + 6 - 12}
-                                y={route.coords.y * 0.7 + 5 - 8}
-                                width="24"
-                                height="5"
+                                x={route.coords.x - 16}
+                                y={route.coords.y - 12}
+                                width="32"
+                                height="7"
                                 fill="#1e293b"
-                                rx="1"
-                                opacity="0.9"
+                                rx="1.5"
+                                opacity="0.95"
                               />
                               <text 
-                                x={route.coords.x * 1.5 + 6} 
-                                y={route.coords.y * 0.7 + 5 - 5} 
+                                x={route.coords.x} 
+                                y={route.coords.y - 7.5} 
                                 textAnchor="middle" 
-                                className="text-[2.5px] font-bold fill-white"
+                                className="text-[3px] font-bold fill-white"
                               >
                                 {route.city}
                               </text>
@@ -230,8 +393,8 @@ export default function Index() {
                         </g>
                       ))}
                       
-                      <text x="100" y="8" textAnchor="middle" className="text-[2px] fill-blue-400 font-medium" opacity="0.4">Северный Ледовитый океан</text>
-                      <text x="175" y="60" textAnchor="middle" className="text-[2px] fill-blue-400 font-medium" opacity="0.4">Тихий океан</text>
+                      <text x="110" y="10" textAnchor="middle" className="text-[2.5px] fill-blue-200 font-medium" opacity="0.6">Северный Ледовитый океан</text>
+                      <text x="195" y="75" textAnchor="middle" className="text-[2.5px] fill-blue-200 font-medium" opacity="0.6">Тихий океан</text>
                     </svg>
                   </div>
                   <div className="mt-3 flex items-center justify-center gap-2 text-xs text-gray-600 bg-gradient-to-r from-blue-50 to-orange-50 rounded-lg p-2">
@@ -271,6 +434,23 @@ export default function Index() {
                     </div>
                   </CardHeader>
                   <CardContent className="p-3 space-y-2 bg-gradient-to-br from-orange-50 to-pink-50">
+                    <div className="mb-3">
+                      <div className="flex items-center gap-1.5 mb-2">
+                        <Icon name="Camera" size={14} className="text-orange-500" />
+                        <h4 className="font-semibold text-xs text-gray-800">Фото города:</h4>
+                      </div>
+                      <div className="grid grid-cols-3 gap-1.5">
+                        {selectedRoute.images.map((image, index) => (
+                          <div key={index} className="relative aspect-square rounded-md overflow-hidden shadow-sm group">
+                            <img 
+                              src={image} 
+                              alt={`${selectedRoute.city} ${index + 1}`} 
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                     <div>
                       <div className="flex items-center gap-1.5 mb-2">
                         <Icon name="Sparkles" size={14} className="text-orange-500" />
@@ -380,6 +560,26 @@ export default function Index() {
                 </div>
 
                 <div className="p-4 md:p-6">
+                  <div className="mb-6">
+                    <h4 className="text-base font-bold text-gray-800 mb-3 flex items-center gap-2">
+                      <Icon name="Camera" size={18} className="text-orange-500" />
+                      Фотографии маршрута
+                    </h4>
+                    <div className="grid grid-cols-3 gap-3">
+                      {selectedRoute.images.map((image, index) => (
+                        <div key={index} className="relative aspect-video rounded-lg overflow-hidden shadow-md group cursor-pointer">
+                          <img 
+                            src={image} 
+                            alt={`${selectedRoute.city} ${index + 1}`} 
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-2">
+                            <span className="text-white text-xs font-semibold">Фото {index + 1}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                   <div className="grid md:grid-cols-2 gap-4 mb-6">
                     <div className="space-y-3">
                       <div className="flex items-start gap-3">
