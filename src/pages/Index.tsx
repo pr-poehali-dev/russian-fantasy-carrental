@@ -130,6 +130,46 @@ export default function Index() {
             className="w-full h-full object-contain object-center"
           />
         </div>
+        <div className="container mx-auto px-4 z-10 relative">
+          <div className="max-w-4xl mx-auto text-center animate-fade-in">
+            <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur px-6 py-3 rounded-full mb-8 shadow-lg">
+              <Icon name="MapPin" size={22} className="text-primary" />
+              <span className="text-base font-semibold text-foreground">Старт из Москвы</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+              Путешествуй по России<br/>
+              <span className="text-gradient">на своих колёсах</span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-12 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] max-w-3xl mx-auto leading-relaxed">
+              Hyundai Grand Starex для больших компаний и семей.<br/>
+              Комфортные минивэны от 4 000 ₽/сутки
+            </p>
+            <div className="flex gap-4 justify-center flex-wrap">
+              <Button size="lg" className="gap-2 text-lg px-10 py-6 h-auto shadow-2xl shadow-primary/30" onClick={() => document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' })}>
+                <Icon name="Car" size={22} />
+                Выбрать Starex
+              </Button>
+              <Button size="lg" variant="outline" className="gap-2 text-lg px-10 py-6 h-auto bg-white/95 backdrop-blur hover:bg-white shadow-xl text-foreground border-2" onClick={() => document.getElementById('routes')?.scrollIntoView({ behavior: 'smooth' })}>
+                <Icon name="Map" size={22} />
+                Готовые маршруты
+              </Button>
+            </div>
+            <div className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+              <div className="bg-white/90 backdrop-blur rounded-2xl p-6 shadow-xl">
+                <div className="text-4xl font-bold text-primary mb-2">15+</div>
+                <div className="text-sm font-medium text-muted-foreground">маршрутов</div>
+              </div>
+              <div className="bg-white/90 backdrop-blur rounded-2xl p-6 shadow-xl">
+                <div className="text-4xl font-bold text-secondary mb-2">7-8</div>
+                <div className="text-sm font-medium text-muted-foreground">мест</div>
+              </div>
+              <div className="bg-white/90 backdrop-blur rounded-2xl p-6 shadow-xl">
+                <div className="text-4xl font-bold text-accent mb-2">2024</div>
+                <div className="text-sm font-medium text-muted-foreground">год авто</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="py-16 bg-muted/30">
