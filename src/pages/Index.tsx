@@ -130,198 +130,210 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-orange-400 via-pink-400 to-purple-500 rounded-3xl blur-2xl opacity-50 animate-pulse"></div>
-              <div className="relative bg-white rounded-3xl p-8 shadow-2xl">
-                <div className="mb-6 flex items-center justify-between">
-                  <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-                    <Icon name="Map" size={28} className="text-blue-600" />
-                    Карта маршрутов
-                  </h3>
-                  <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 text-sm">
-                    {routes.length} направлений
-                  </Badge>
-                </div>
-                <div className="relative w-full aspect-[4/3] bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-2xl overflow-hidden shadow-inner">
-                  <svg viewBox="0 0 100 100" className="w-full h-full">
-                    <defs>
-                      <filter id="glow">
-                        <feGaussianBlur stdDeviation="0.5" result="coloredBlur"/>
-                        <feMerge>
-                          <feMergeNode in="coloredBlur"/>
-                          <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                      </filter>
-                      <radialGradient id="moscowGlow">
-                        <stop offset="0%" stopColor="#ef4444" stopOpacity="0.8"/>
-                        <stop offset="100%" stopColor="#dc2626" stopOpacity="0"/>
-                      </radialGradient>
-                    </defs>
-                    
-                    <circle cx="38" cy="43" r="5" fill="url(#moscowGlow)" className="animate-pulse" />
-                    <circle cx="38" cy="43" r="2.5" fill="#dc2626" filter="url(#glow)" />
-                    <circle cx="38" cy="43" r="1.5" fill="#ffffff" />
-                    <text x="38" y="38" textAnchor="middle" className="text-[3.5px] font-black fill-white drop-shadow-lg">📍 МОСКВА</text>
-                    
-                    {routes.map(route => (
-                      <g key={route.id}>
-                        <line 
-                          x1="38" 
-                          y1="43" 
-                          x2={route.coords.x} 
-                          y2={route.coords.y} 
-                          stroke={hoveredRoute === route.id ? '#fbbf24' : 'rgba(255,255,255,0.2)'} 
-                          strokeWidth={hoveredRoute === route.id ? "0.8" : "0.4"}
-                          strokeDasharray="2,2" 
-                          className="transition-all duration-300"
-                          filter={hoveredRoute === route.id ? 'url(#glow)' : ''}
-                        />
-                        <circle 
-                          cx={route.coords.x} 
-                          cy={route.coords.y} 
-                          r={hoveredRoute === route.id ? "3" : "2"}
-                          fill={hoveredRoute === route.id ? '#fbbf24' : '#3b82f6'}
-                          stroke="#ffffff"
-                          strokeWidth="0.5"
-                          className="cursor-pointer transition-all duration-300 hover:scale-150"
-                          filter="url(#glow)"
-                          onMouseEnter={() => setHoveredRoute(route.id)}
-                          onMouseLeave={() => setHoveredRoute(null)}
-                          onClick={() => setSelectedRoute(route)}
-                        />
-                        {hoveredRoute === route.id && (
-                          <>
-                            <rect
-                              x={route.coords.x - 12}
-                              y={route.coords.y - 9}
-                              width="24"
-                              height="6"
-                              fill="#1e293b"
-                              rx="1"
-                              opacity="0.9"
-                            />
-                            <text 
-                              x={route.coords.x} 
-                              y={route.coords.y - 5.5} 
-                              textAnchor="middle" 
-                              className="text-[2.8px] font-black fill-white"
-                            >
-                              {route.city}
-                            </text>
-                            <text 
-                              x={route.coords.x} 
-                              y={route.coords.y + 5.5} 
-                              textAnchor="middle" 
-                              className="text-[2px] font-bold fill-orange-300"
-                            >
-                              {route.distance} км • {route.days}
-                            </text>
-                          </>
-                        )}
-                      </g>
-                    ))}
-                  </svg>
-                </div>
-                <div className="mt-6 flex items-center justify-center gap-3 text-sm text-gray-600 bg-gradient-to-r from-blue-50 to-orange-50 rounded-xl p-4">
-                  <Icon name="MousePointer2" size={20} className="text-blue-600 animate-bounce" />
-                  <span className="font-semibold">Наведите на точку и кликните для выбора маршрута</span>
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+              <div className="lg:col-span-2 relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-orange-400 via-pink-400 to-purple-500 rounded-3xl blur-2xl opacity-50 animate-pulse"></div>
+                <div className="relative bg-white rounded-3xl p-6 shadow-2xl">
+                  <div className="mb-4 flex items-center justify-between">
+                    <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+                      <Icon name="Map" size={24} className="text-blue-600" />
+                      Интерактивная карта России
+                    </h3>
+                    <Badge className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 text-sm">
+                      {routes.length} городов
+                    </Badge>
+                  </div>
+                  <div className="relative w-full aspect-[16/10] bg-gradient-to-br from-slate-100 to-blue-50 rounded-2xl overflow-hidden shadow-inner border-2 border-blue-200">
+                    <svg viewBox="0 0 180 100" className="w-full h-full">
+                      <defs>
+                        <filter id="glow">
+                          <feGaussianBlur stdDeviation="0.8" result="coloredBlur"/>
+                          <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                          </feMerge>
+                        </filter>
+                        <radialGradient id="moscowGlow">
+                          <stop offset="0%" stopColor="#ef4444" stopOpacity="1"/>
+                          <stop offset="100%" stopColor="#dc2626" stopOpacity="0"/>
+                        </radialGradient>
+                        <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3"/>
+                          <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.8"/>
+                        </linearGradient>
+                      </defs>
+                      
+                      <path d="M 40 85 L 30 75 L 25 60 L 28 45 L 35 35 L 45 30 L 60 25 L 75 22 L 90 20 L 105 22 L 120 25 L 135 30 L 148 38 L 158 48 L 165 58 L 168 70 L 165 80 L 155 88 L 140 92 L 120 95 L 100 96 L 80 94 L 60 90 L 45 87 L 40 85 Z" 
+                        fill="#e0f2fe" 
+                        stroke="#3b82f6" 
+                        strokeWidth="0.8" 
+                        strokeDasharray="2,1"
+                        opacity="0.4"
+                      />
+                      
+                      <path d="M 45 50 Q 50 48, 55 50" stroke="#60a5fa" strokeWidth="0.3" fill="none" opacity="0.3" />
+                      <path d="M 80 35 Q 85 33, 90 35" stroke="#60a5fa" strokeWidth="0.3" fill="none" opacity="0.3" />
+                      <path d="M 120 55 Q 125 53, 130 55" stroke="#60a5fa" strokeWidth="0.3" fill="none" opacity="0.3" />
+                      
+                      <circle cx="50" cy="55" r="8" fill="url(#moscowGlow)" className="animate-pulse" opacity="0.6" />
+                      <circle cx="50" cy="55" r="3.5" fill="#dc2626" filter="url(#glow)" />
+                      <circle cx="50" cy="55" r="2" fill="#ffffff" />
+                      <text x="50" y="48" textAnchor="middle" className="text-[4px] font-black fill-red-600 drop-shadow-lg">МОСКВА</text>
+                      
+                      {routes.map(route => (
+                        <g key={route.id}>
+                          <line 
+                            x1="50" 
+                            y1="55" 
+                            x2={route.coords.x * 1.5 + 20} 
+                            y2={route.coords.y * 0.9 + 10} 
+                            stroke={selectedRoute?.id === route.id ? '#f59e0b' : hoveredRoute === route.id ? '#fbbf24' : 'url(#routeGradient)'} 
+                            strokeWidth={selectedRoute?.id === route.id ? "1.2" : hoveredRoute === route.id ? "1" : "0.5"}
+                            strokeDasharray="3,2" 
+                            className="transition-all duration-500"
+                            opacity={selectedRoute?.id === route.id ? "0.9" : hoveredRoute === route.id ? "0.7" : "0.3"}
+                            filter={selectedRoute?.id === route.id || hoveredRoute === route.id ? 'url(#glow)' : ''}
+                          />
+                          <circle 
+                            cx={route.coords.x * 1.5 + 20} 
+                            cy={route.coords.y * 0.9 + 10} 
+                            r={selectedRoute?.id === route.id ? "4" : hoveredRoute === route.id ? "3.5" : "2.5"}
+                            fill={selectedRoute?.id === route.id ? '#f59e0b' : hoveredRoute === route.id ? '#fbbf24' : '#3b82f6'}
+                            stroke="#ffffff"
+                            strokeWidth="0.8"
+                            className="cursor-pointer transition-all duration-300"
+                            filter="url(#glow)"
+                            onMouseEnter={() => setHoveredRoute(route.id)}
+                            onMouseLeave={() => setHoveredRoute(null)}
+                            onClick={() => setSelectedRoute(route)}
+                          />
+                          {hoveredRoute === route.id && (
+                            <>
+                              <rect
+                                x={route.coords.x * 1.5 + 20 - 15}
+                                y={route.coords.y * 0.9 + 10 - 10}
+                                width="30"
+                                height="7"
+                                fill="#1e293b"
+                                rx="1.5"
+                                opacity="0.95"
+                              />
+                              <text 
+                                x={route.coords.x * 1.5 + 20} 
+                                y={route.coords.y * 0.9 + 10 - 6} 
+                                textAnchor="middle" 
+                                className="text-[3.2px] font-black fill-white"
+                              >
+                                {route.city}
+                              </text>
+                            </>
+                          )}
+                        </g>
+                      ))}
+                      
+                      <text x="90" y="12" textAnchor="middle" className="text-[3px] fill-blue-400 font-semibold" opacity="0.5">Северный Ледовитый океан</text>
+                      <text x="165" y="75" textAnchor="middle" className="text-[3px] fill-blue-400 font-semibold" opacity="0.5">Тихий океан</text>
+                    </svg>
+                  </div>
+                  <div className="mt-4 flex items-center justify-center gap-3 text-xs text-gray-600 bg-gradient-to-r from-blue-50 to-orange-50 rounded-lg p-3">
+                    <Icon name="MousePointer2" size={16} className="text-blue-600 animate-bounce" />
+                    <span className="font-semibold">Кликни на город для просмотра маршрута</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="space-y-6">
+              <div className="space-y-4">
               {selectedRoute ? (
                 <div className="relative">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-500 rounded-3xl blur-xl opacity-50 animate-pulse"></div>
-                  <Card className="relative border-4 border-orange-400 shadow-2xl animate-scale-in overflow-hidden">
-                  <CardHeader className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-600 text-white rounded-t-xl relative overflow-hidden">
-                    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMC41IiBvcGFjaXR5PSIwLjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-20"></div>
-                    <div className="flex items-center justify-between relative">
-                      <CardTitle className="text-4xl font-black flex items-center gap-3">
-                        <span className="text-5xl">🚗</span>
+                  <div className="absolute -inset-2 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-500 rounded-2xl blur-lg opacity-40 animate-pulse"></div>
+                  <Card className="relative border-3 border-orange-400 shadow-xl animate-scale-in overflow-hidden">
+                  <CardHeader className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-600 text-white p-4 relative overflow-hidden">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-3xl">📍</span>
                         <div>
-                          <div className="text-sm font-normal opacity-80">Маршрут</div>
-                          Москва → {selectedRoute.city}
+                          <div className="text-xs opacity-80">Маршрут</div>
+                          <CardTitle className="text-xl font-black">Москва → {selectedRoute.city}</CardTitle>
                         </div>
-                      </CardTitle>
-                      <Button variant="ghost" size="lg" className="text-white hover:bg-white/20 rounded-full" onClick={() => setSelectedRoute(null)}>
-                        <Icon name="X" size={24} />
+                      </div>
+                      <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 rounded-full" onClick={() => setSelectedRoute(null)}>
+                        <Icon name="X" size={20} />
                       </Button>
                     </div>
-                    <div className="flex items-center gap-6 text-xl mt-4 relative">
-                      <div className="flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full">
-                        <Icon name="Route" size={20} />
+                    <div className="flex items-center gap-3 text-sm mt-3">
+                      <div className="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full">
+                        <Icon name="Route" size={14} />
                         <span className="font-bold">{selectedRoute.distance} км</span>
                       </div>
-                      <div className="flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full">
-                        <Icon name="Clock" size={20} />
+                      <div className="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full">
+                        <Icon name="Clock" size={14} />
                         <span className="font-bold">{selectedRoute.days}</span>
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="p-8 space-y-6 bg-gradient-to-br from-orange-50 to-pink-50">
+                  <CardContent className="p-4 space-y-3 bg-gradient-to-br from-orange-50 to-pink-50">
                     <div>
-                      <div className="flex items-center gap-3 mb-6">
-                        <Icon name="Sparkles" size={28} className="text-orange-500" />
-                        <h4 className="font-black text-2xl text-gray-800">Выберите тип маршрута:</h4>
+                      <div className="flex items-center gap-2 mb-3">
+                        <Icon name="Sparkles" size={20} className="text-orange-500" />
+                        <h4 className="font-bold text-lg text-gray-800">Тип маршрута:</h4>
                       </div>
-                      <div className="space-y-3">
-                        <Card className="border-2 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer">
-                          <CardContent className="p-6 bg-gradient-to-r from-blue-50 to-blue-100 group-hover:from-blue-100 group-hover:to-blue-200 transition-all">
+                      <div className="space-y-2">
+                        <Card className="border-2 border-gray-300 hover:border-blue-500 hover:shadow-lg hover:scale-102 transition-all cursor-pointer group">
+                          <CardContent className="p-3 bg-gradient-to-r from-blue-50 to-blue-100 group-hover:from-blue-100 group-hover:to-blue-200 transition-all">
                             <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-4">
-                                <div className="text-4xl">🎯</div>
+                              <div className="flex items-center gap-2">
+                                <div className="text-2xl">🎯</div>
                                 <div>
-                                  <div className="font-black text-xl text-gray-800">Стандарт</div>
-                                  <div className="text-sm text-gray-600 font-semibold">Москва → {selectedRoute.city} → Москва</div>
+                                  <div className="font-bold text-base text-gray-800">Стандарт</div>
+                                  <div className="text-xs text-gray-600">туда-обратно</div>
                                 </div>
                               </div>
                               <div className="text-right">
-                                <div className="text-3xl font-black text-blue-600">{selectedRoute.priceStandard.toLocaleString()} ₽</div>
-                                <div className="text-xs text-gray-500 font-semibold">от суммы</div>
+                                <div className="text-xl font-black text-blue-600">{selectedRoute.priceStandard.toLocaleString()} ₽</div>
+                                <div className="text-[10px] text-gray-500">от суммы</div>
                               </div>
                             </div>
                           </CardContent>
                         </Card>
                         
-                        <Card className="border-2 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer">
-                          <CardContent className="p-6 bg-gradient-to-r from-purple-50 to-purple-100 group-hover:from-purple-100 group-hover:to-purple-200 transition-all">
+                        <Card className="border-2 border-gray-300 hover:border-purple-500 hover:shadow-lg hover:scale-102 transition-all cursor-pointer group">
+                          <CardContent className="p-3 bg-gradient-to-r from-purple-50 to-purple-100 group-hover:from-purple-100 group-hover:to-purple-200 transition-all">
                             <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-4 flex-1">
-                                <div className="text-4xl">🎨</div>
+                              <div className="flex items-center gap-2 flex-1">
+                                <div className="text-2xl">🎨</div>
                                 <div>
-                                  <div className="font-black text-xl text-gray-800">Комфорт</div>
-                                  <div className="text-sm text-gray-600 font-semibold">С остановками по пути (2-3 города)</div>
+                                  <div className="font-bold text-base text-gray-800">Комфорт</div>
+                                  <div className="text-xs text-gray-600">2-3 города</div>
                                 </div>
                               </div>
                               <div className="text-right">
-                                <div className="text-3xl font-black text-purple-600">{selectedRoute.priceComfort.toLocaleString()} ₽</div>
-                                <div className="text-xs text-gray-500 font-semibold">от суммы</div>
+                                <div className="text-xl font-black text-purple-600">{selectedRoute.priceComfort.toLocaleString()} ₽</div>
+                                <div className="text-[10px] text-gray-500">от суммы</div>
                               </div>
                             </div>
                           </CardContent>
                         </Card>
                         
-                        <Card className="border-4 border-orange-500 hover:shadow-2xl hover:scale-105 transition-all cursor-pointer bg-gradient-to-r from-orange-100 to-yellow-100 group relative overflow-hidden">
-                          <div className="absolute top-2 right-2 animate-bounce">
-                            <Badge className="bg-red-500 text-white font-bold px-3 py-1">ХИТ!</Badge>
+                        <Card className="border-3 border-orange-500 hover:shadow-lg hover:scale-102 transition-all cursor-pointer bg-gradient-to-r from-orange-100 to-yellow-100 group relative">
+                          <div className="absolute top-1 right-1">
+                            <Badge className="bg-red-500 text-white font-bold px-2 py-0.5 text-[10px]">ХИТ</Badge>
                           </div>
-                          <CardContent className="p-6 group-hover:from-orange-200 group-hover:to-yellow-200 transition-all">
+                          <CardContent className="p-3 group-hover:from-orange-200 group-hover:to-yellow-200 transition-all">
                             <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-4 flex-1">
-                                <div className="text-4xl animate-pulse">⭐</div>
+                              <div className="flex items-center gap-2 flex-1">
+                                <div className="text-2xl">⭐</div>
                                 <div>
-                                  <div className="font-black text-xl text-orange-700 flex items-center gap-2">
-                                    <Icon name="Crown" size={24} className="text-orange-500 fill-orange-500" />
+                                  <div className="font-bold text-base text-orange-700 flex items-center gap-1">
+                                    <Icon name="Crown" size={16} className="text-orange-500 fill-orange-500" />
                                     Премиум
                                   </div>
-                                  <div className="text-sm text-gray-700 font-semibold">Расширенный маршрут (4-5 городов)</div>
+                                  <div className="text-xs text-gray-700">4-5 городов</div>
                                 </div>
                               </div>
                               <div className="text-right">
-                                <div className="text-3xl font-black text-orange-600">{selectedRoute.pricePremium.toLocaleString()} ₽</div>
-                                <div className="text-xs text-gray-600 font-semibold">от суммы</div>
+                                <div className="text-xl font-black text-orange-600">{selectedRoute.pricePremium.toLocaleString()} ₽</div>
+                                <div className="text-[10px] text-gray-600">от суммы</div>
                               </div>
                             </div>
                           </CardContent>
@@ -329,43 +341,26 @@ export default function Index() {
                       </div>
                     </div>
                     
-                    <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-8 text-white shadow-xl">
-                      <div className="grid grid-cols-2 gap-6 text-center">
-                        <div className="bg-white/20 backdrop-blur rounded-xl p-4">
-                          <div className="text-5xl font-black mb-2">{selectedRoute.distance}</div>
-                          <div className="text-sm font-semibold opacity-90">километров</div>
-                        </div>
-                        <div className="bg-white/20 backdrop-blur rounded-xl p-4">
-                          <div className="text-5xl font-black mb-2">{selectedRoute.days.split('-')[0]}</div>
-                          <div className="text-sm font-semibold opacity-90">дней в пути</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <Button size="lg" className="w-full bg-gradient-to-r from-orange-500 via-red-500 to-pink-600 hover:from-orange-600 hover:via-red-600 hover:to-pink-700 h-16 text-xl font-black shadow-2xl hover:shadow-orange-500/50 hover:scale-105 transition-all">
-                      <Icon name="Rocket" size={28} className="mr-3" />
-                      Забронировать маршрут сейчас!
+                    <Button size="lg" className="w-full bg-gradient-to-r from-orange-500 via-red-500 to-pink-600 hover:from-orange-600 hover:via-red-600 hover:to-pink-700 h-12 text-base font-black shadow-xl hover:shadow-orange-500/50 hover:scale-105 transition-all">
+                      <Icon name="Rocket" size={20} className="mr-2" />
+                      Забронировать!
                     </Button>
                   </CardContent>
                 </Card>
                 </div>
               ) : (
                 <div className="relative">
-                  <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-3xl blur-lg opacity-30 animate-pulse"></div>
-                  <Card className="relative border-4 border-dashed border-blue-400 shadow-2xl bg-gradient-to-br from-white to-blue-50">
-                    <CardContent className="p-16 text-center">
-                      <div className="mb-8 relative">
-                        <Icon name="MousePointer2" size={80} className="mx-auto text-blue-500 animate-bounce" />
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-blue-400 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-                      </div>
-                      <h3 className="text-4xl font-black text-gray-800 mb-4">👆 Кликни на точку!</h3>
-                      <p className="text-gray-600 text-xl font-semibold leading-relaxed">
-                        Нажмите на любую точку на карте,<br/>
-                        чтобы увидеть детали маршрута и 3 варианта путешествия
+                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl blur-md opacity-30"></div>
+                  <Card className="relative border-3 border-dashed border-blue-400 shadow-lg bg-gradient-to-br from-white to-blue-50">
+                    <CardContent className="p-8 text-center">
+                      <Icon name="MousePointer2" size={48} className="mx-auto text-blue-500 animate-bounce mb-4" />
+                      <h3 className="text-2xl font-black text-gray-800 mb-2">Выбери город!</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Кликни на любую точку<br/>на карте слева
                       </p>
-                      <div className="mt-8 inline-flex items-center gap-2 bg-blue-100 px-6 py-3 rounded-full">
-                        <Icon name="Info" size={20} className="text-blue-600" />
-                        <span className="text-blue-800 font-bold">Выбери город и начни планировать!</span>
+                      <div className="mt-4 inline-flex items-center gap-2 bg-blue-100 px-4 py-2 rounded-full">
+                        <Icon name="Info" size={16} className="text-blue-600" />
+                        <span className="text-blue-800 font-bold text-xs">3 варианта маршрута</span>
                       </div>
                     </CardContent>
                   </Card>
@@ -373,6 +368,205 @@ export default function Index() {
               )}
             </div>
           </div>
+
+          {selectedRoute && (
+            <div className="mt-16 max-w-6xl mx-auto animate-scale-in">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border-2 border-orange-200">
+                <div className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-600 p-8 text-white text-center">
+                  <h3 className="text-4xl md:text-5xl font-black mb-3">
+                    🚗 Маршрут: Москва → {selectedRoute.city}
+                  </h3>
+                  <p className="text-xl opacity-90">
+                    Подробное описание путешествия
+                  </p>
+                </div>
+
+                <div className="p-8 md:p-12">
+                  <div className="grid md:grid-cols-2 gap-8 mb-12">
+                    <div className="space-y-6">
+                      <div className="flex items-start gap-4">
+                        <div className="bg-blue-100 rounded-full p-4 flex-shrink-0">
+                          <Icon name="Route" size={32} className="text-blue-600" />
+                        </div>
+                        <div>
+                          <h4 className="text-2xl font-black text-gray-800 mb-2">Расстояние и время</h4>
+                          <p className="text-gray-600 text-lg leading-relaxed">
+                            <strong className="text-blue-600">{selectedRoute.distance} км</strong> в одну сторону. 
+                            Продолжительность поездки: <strong className="text-blue-600">{selectedRoute.days}</strong>.
+                            Комфортный темп с остановками на отдых и экскурсии.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-4">
+                        <div className="bg-green-100 rounded-full p-4 flex-shrink-0">
+                          <Icon name="CheckCircle" size={32} className="text-green-600" />
+                        </div>
+                        <div>
+                          <h4 className="text-2xl font-black text-gray-800 mb-2">Что включено</h4>
+                          <ul className="space-y-2 text-gray-600 text-lg">
+                            <li className="flex items-center gap-2">
+                              <Icon name="Check" size={20} className="text-green-600" />
+                              Полная страховка (КАСКО + ОСАГО)
+                            </li>
+                            <li className="flex items-center gap-2">
+                              <Icon name="Check" size={20} className="text-green-600" />
+                              Поддержка 24/7 на всем маршруте
+                            </li>
+                            <li className="flex items-center gap-2">
+                              <Icon name="Check" size={20} className="text-green-600" />
+                              Подробная карта с точками интереса
+                            </li>
+                            <li className="flex items-center gap-2">
+                              <Icon name="Check" size={20} className="text-green-600" />
+                              Рекомендации по отелям и кафе
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-6">
+                      <div className="flex items-start gap-4">
+                        <div className="bg-purple-100 rounded-full p-4 flex-shrink-0">
+                          <Icon name="MapPin" size={32} className="text-purple-600" />
+                        </div>
+                        <div>
+                          <h4 className="text-2xl font-black text-gray-800 mb-2">Ключевые точки</h4>
+                          <p className="text-gray-600 text-lg leading-relaxed mb-3">
+                            На маршруте вас ждут живописные города и природные достопримечательности:
+                          </p>
+                          <div className="bg-purple-50 rounded-xl p-4 space-y-2">
+                            <div className="flex items-center gap-2 text-purple-700">
+                              <Icon name="MapPin" size={18} className="flex-shrink-0" />
+                              <span className="font-semibold">Исторические центры городов</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-purple-700">
+                              <Icon name="Camera" size={18} className="flex-shrink-0" />
+                              <span className="font-semibold">Смотровые площадки</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-purple-700">
+                              <Icon name="Landmark" size={18} className="flex-shrink-0" />
+                              <span className="font-semibold">Архитектурные памятники</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-purple-700">
+                              <Icon name="Trees" size={18} className="flex-shrink-0" />
+                              <span className="font-semibold">Природные заповедники</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-4">
+                        <div className="bg-orange-100 rounded-full p-4 flex-shrink-0">
+                          <Icon name="Calendar" size={32} className="text-orange-600" />
+                        </div>
+                        <div>
+                          <h4 className="text-2xl font-black text-gray-800 mb-2">Лучшее время</h4>
+                          <p className="text-gray-600 text-lg leading-relaxed">
+                            Оптимальный сезон: <strong className="text-orange-600">май-сентябрь</strong>. 
+                            Комфортная погода, открыты все достопримечательности. 
+                            Зимой доступны особые маршруты с зимними развлечениями.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-orange-50 via-red-50 to-pink-50 rounded-2xl p-8 border-2 border-orange-200">
+                    <div className="text-center mb-6">
+                      <h4 className="text-3xl font-black text-gray-800 mb-3">
+                        💰 Выгодные цены на любой бюджет
+                      </h4>
+                      <p className="text-gray-600 text-lg">
+                        Выберите подходящий вариант маршрута
+                      </p>
+                    </div>
+                    <div className="grid md:grid-cols-3 gap-6">
+                      <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border-2 border-blue-200">
+                        <div className="text-center mb-4">
+                          <div className="text-4xl mb-2">🎯</div>
+                          <h5 className="text-xl font-bold text-gray-800">Стандарт</h5>
+                          <p className="text-sm text-gray-600">туда-обратно</p>
+                        </div>
+                        <div className="text-center mb-4">
+                          <div className="text-3xl font-black text-blue-600">{selectedRoute.priceStandard.toLocaleString()} ₽</div>
+                          <div className="text-xs text-gray-500">от суммы</div>
+                        </div>
+                        <ul className="space-y-2 text-sm text-gray-600">
+                          <li className="flex items-center gap-2">
+                            <Icon name="Check" size={16} className="text-blue-600" />
+                            Прямой маршрут
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Icon name="Check" size={16} className="text-blue-600" />
+                            Основные точки
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border-2 border-purple-200">
+                        <div className="text-center mb-4">
+                          <div className="text-4xl mb-2">🎨</div>
+                          <h5 className="text-xl font-bold text-gray-800">Комфорт</h5>
+                          <p className="text-sm text-gray-600">2-3 города</p>
+                        </div>
+                        <div className="text-center mb-4">
+                          <div className="text-3xl font-black text-purple-600">{selectedRoute.priceComfort.toLocaleString()} ₽</div>
+                          <div className="text-xs text-gray-500">от суммы</div>
+                        </div>
+                        <ul className="space-y-2 text-sm text-gray-600">
+                          <li className="flex items-center gap-2">
+                            <Icon name="Check" size={16} className="text-purple-600" />
+                            Остановки по пути
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Icon name="Check" size={16} className="text-purple-600" />
+                            Больше впечатлений
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-gradient-to-br from-orange-100 to-yellow-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border-2 border-orange-300 relative">
+                        <div className="absolute -top-3 -right-3">
+                          <Badge className="bg-red-500 text-white font-bold px-3 py-1">ХИТ!</Badge>
+                        </div>
+                        <div className="text-center mb-4">
+                          <div className="text-4xl mb-2">⭐</div>
+                          <h5 className="text-xl font-bold text-orange-700">Премиум</h5>
+                          <p className="text-sm text-gray-700">4-5 городов</p>
+                        </div>
+                        <div className="text-center mb-4">
+                          <div className="text-3xl font-black text-orange-600">{selectedRoute.pricePremium.toLocaleString()} ₽</div>
+                          <div className="text-xs text-gray-600">от суммы</div>
+                        </div>
+                        <ul className="space-y-2 text-sm text-gray-700">
+                          <li className="flex items-center gap-2">
+                            <Icon name="Check" size={16} className="text-orange-600" />
+                            Максимум точек
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Icon name="Check" size={16} className="text-orange-600" />
+                            VIP поддержка
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-12 text-center">
+                    <Button size="lg" className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-600 hover:from-orange-600 hover:via-red-600 hover:to-pink-700 text-white h-16 px-12 text-xl font-black shadow-2xl hover:shadow-orange-500/50 hover:scale-105 transition-all">
+                      <Icon name="Phone" size={24} className="mr-3" />
+                      Забронировать этот маршрут
+                    </Button>
+                    <p className="mt-4 text-gray-600">
+                      Или позвоните нам: <strong className="text-blue-600">8 (800) 555-35-35</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
