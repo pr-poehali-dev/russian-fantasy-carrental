@@ -568,6 +568,7 @@ export default function Index() {
             </div>
           )}
         </div>
+        </div>
       </section>
 
       <section className="py-24 bg-gradient-to-br from-orange-500 via-red-500 to-pink-600 relative overflow-hidden">
