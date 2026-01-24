@@ -34,10 +34,10 @@ export default function Partners() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center text-white">
             <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
-              Зарабатывайте на своём автомобиле
+              Пассивный доход с вашего автомобиля
             </h1>
             <p className="text-lg md:text-xl mb-8 text-white/90">
-              Сдавайте ваш микроавтобус в аренду через нашу платформу и получайте стабильный доход без лишних хлопот
+              Ваш микроавтобус работает на вас! Сдавайте в аренду через наш сильный бренд и получайте стабильный доход, пока мы развиваемся по всей России
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg">
@@ -45,7 +45,7 @@ export default function Partners() {
                 <div className="text-sm text-white/90">в месяц</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg">
-                <div className="text-3xl font-bold">85%</div>
+                <div className="text-3xl font-bold">70%</div>
                 <div className="text-sm text-white/90">вам от аренды</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg">
@@ -62,7 +62,7 @@ export default function Partners() {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Почему собственники выбирают нас</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Мы берём на себя все заботы по поиску клиентов, оформлению и поддержке, а вы просто получаете доход
+            Уникальный бренд «Русская Фантазия» работает для того, чтобы каждый гражданин нашей страны мог путешествовать по бескрайней России
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {/* Преимущество 1 */}
@@ -82,11 +82,11 @@ export default function Partners() {
             <Card className="border-2 hover:border-primary transition-colors duration-300">
               <CardContent className="pt-6 pb-6 px-6">
                 <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <Icon name="ShieldCheck" className="text-primary" size={28} />
+                  <Icon name="TrendingUp" className="text-primary" size={28} />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Полное страхование</h3>
+                <h3 className="text-xl font-bold mb-3">Высокий доход</h3>
                 <p className="text-muted-foreground">
-                  Ваш автомобиль застрахован по КАСКО и ОСАГО. Мы берём на себя все риски и полностью отвечаем за сохранность транспорта.
+                  Получайте до 70% от каждой аренды. Такой процент возможен благодаря тому, что вы самостоятельно обеспечиваете страхование и ТО автомобиля.
                 </p>
               </CardContent>
             </Card>
@@ -95,11 +95,11 @@ export default function Partners() {
             <Card className="border-2 hover:border-primary transition-colors duration-300">
               <CardContent className="pt-6 pb-6 px-6">
                 <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <Icon name="Wrench" className="text-primary" size={28} />
+                  <Icon name="Building2" className="text-primary" size={28} />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Техобслуживание</h3>
+                <h3 className="text-xl font-bold mb-3">Собственное СТО</h3>
                 <p className="text-muted-foreground">
-                  Регулярное ТО, мойка и уборка автомобиля — всё включено. Ваше авто всегда в идеальном состоянии без ваших усилий.
+                  В середине 2025 года открываем собственное СТО для обслуживания всех автомобилей партнёров. Гарантии качества и выгодные цены на ТО!
                 </p>
               </CardContent>
             </Card>
@@ -125,7 +125,7 @@ export default function Partners() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">Стабильные выплаты</h3>
                 <p className="text-muted-foreground">
-                  Получайте 85% от дохода с аренды. Выплаты 2 раза в месяц без задержек на вашу карту или счёт.
+                  Получайте 70% от дохода с аренды. Выплаты 2 раза в месяц без задержек на вашу карту или счёт — это пассивный доход!
                 </p>
               </CardContent>
             </Card>
@@ -134,11 +134,11 @@ export default function Partners() {
             <Card className="border-2 hover:border-primary transition-colors duration-300">
               <CardContent className="pt-6 pb-6 px-6">
                 <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <Icon name="HeadphonesIcon" className="text-primary" size={28} />
+                  <Icon name="MapPin" className="text-primary" size={28} />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Поддержка 24/7</h3>
+                <h3 className="text-xl font-bold mb-3">Развитие по России</h3>
                 <p className="text-muted-foreground">
-                  Наша команда всегда на связи. Решаем любые вопросы оперативно, вы можете быть спокойны за свой автомобиль.
+                  Мы активно развиваемся по всей стране. Присоединяйтесь к сильному бренду на этапе роста и зарабатывайте больше!
                 </p>
               </CardContent>
             </Card>
@@ -171,9 +171,9 @@ export default function Partners() {
                   2
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-2">Встреча и осмотр</h3>
+                  <h3 className="text-2xl font-bold mb-2">Осмотр на СТО</h3>
                   <p className="text-muted-foreground text-lg">
-                    Наш специалист осмотрит автомобиль, обсудит условия сотрудничества и рассчитает ваш доход. Всё займёт 30 минут.
+                    Проводим профессиональный осмотр автомобиля на нашем СТО, обсуждаем условия сотрудничества и рассчитываем ваш доход.
                   </p>
                 </div>
               </div>
@@ -237,7 +237,7 @@ export default function Partners() {
                   <div>
                     <h3 className="font-bold text-lg mb-2">Год выпуска</h3>
                     <p className="text-muted-foreground">
-                      Автомобиль не старше 2010 года. Предпочтение автомобилям 2015 года и новее
+                      Автомобиль не старше 2012 года. Предпочтение автомобилям 2015 года и новее
                     </p>
                   </div>
                 </div>
@@ -345,9 +345,9 @@ export default function Partners() {
 
             <Card className="border-2">
               <CardContent className="pt-6 pb-6 px-6">
-                <h3 className="font-bold text-lg mb-2">Что будет с моим автомобилем?</h3>
+                <h3 className="font-bold text-lg mb-2">Почему 70%, а не больше?</h3>
                 <p className="text-muted-foreground">
-                  Мы бережно относимся к технике. Регулярное ТО, мойка, проверка перед каждой арендой. Автомобиль застрахован по КАСКО — все риски на нас.
+                  Такой высокий процент возможен, потому что страхование (КАСКО/ОСАГО) и техобслуживание автомобиля остаются на вашей стороне. Мы занимаемся только поиском клиентов и управлением арендой.
                 </p>
               </CardContent>
             </Card>
@@ -365,16 +365,16 @@ export default function Partners() {
               <CardContent className="pt-6 pb-6 px-6">
                 <h3 className="font-bold text-lg mb-2">Кто оплачивает ремонт и ТО?</h3>
                 <p className="text-muted-foreground">
-                  Текущее обслуживание (ТО, расходники, мойка) — наша забота. Капитальный ремонт по износу обсуждается индивидуально.
+                  Страхование и техобслуживание остаются на вашей стороне. Но с открытием собственного СТО в 2025 г. партнёры получат выгодные цены на обслуживание и гарантии качества!
                 </p>
               </CardContent>
             </Card>
 
             <Card className="border-2">
               <CardContent className="pt-6 pb-6 px-6">
-                <h3 className="font-bold text-lg mb-2">Нужно ли мне самому искать клиентов?</h3>
+                <h3 className="font-bold text-lg mb-2">Это действительно пассивный доход?</h3>
                 <p className="text-muted-foreground">
-                  Нет! Мы полностью берём на себя маркетинг, поиск клиентов, оформление договоров и поддержку. Вы просто получаете доход.
+                  Да! Ваш автомобиль работает на вас. Мы полностью берём на себя поиск клиентов, оформление, управление арендой. Вы просто получаете регулярные выплаты 2 раза в месяц.
                 </p>
               </CardContent>
             </Card>
