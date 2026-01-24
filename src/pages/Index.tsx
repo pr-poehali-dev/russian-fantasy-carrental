@@ -8,7 +8,6 @@ import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import RouteMap from '@/components/RouteMap';
 
 const routes = [
   { 
@@ -322,12 +321,75 @@ export default function Index() {
                       {routes.length} городов
                     </Badge>
                   </div>
-                  <div className="relative w-full h-[450px] rounded-xl overflow-hidden shadow-inner border-2 border-blue-300">
-                    <RouteMap 
-                      routes={routes}
-                      selectedRoute={selectedRoute}
-                      onRouteSelect={setSelectedRoute}
+                  <div className="relative w-full aspect-[2.2/1] rounded-xl overflow-hidden shadow-inner border-2 border-blue-300">
+                    <img 
+                      src="https://cdn.poehali.dev/projects/cdb115cf-04fc-4b69-a392-036f0de79f80/bucket/4b37ab87-47fb-4435-b959-a6dcbf29806d.PNG" 
+                      alt="Карта России" 
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
+                    <svg viewBox="0 0 220 100" className="absolute inset-0 w-full h-full">
+                      <defs>
+                        <filter id="glow">
+                          <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                          <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                          </feMerge>
+                        </filter>
+                        <radialGradient id="moscowGlow">
+                          <stop offset="0%" stopColor="#ef4444" stopOpacity="1"/>
+                          <stop offset="100%" stopColor="#dc2626" stopOpacity="0"/>
+                        </radialGradient>
+                      </defs>
+                      
+                      <circle cx="37" cy="56" r="8" fill="url(#moscowGlow)" className="animate-pulse" opacity="0.5" />
+                      <circle cx="37" cy="56" r="4" fill="#dc2626" filter="url(#glow)" />
+                      <circle cx="37" cy="56" r="2" fill="#ffffff" />
+                      <text x="37" y="49" textAnchor="middle" className="text-[3.5px] font-black fill-white drop-shadow-lg">МОСКВА</text>
+                      
+                      {routes.map(route => (
+                        <g key={route.id}>
+                          <circle 
+                            cx={route.coords.x} 
+                            cy={route.coords.y} 
+                            r={selectedRoute?.id === route.id ? "5" : hoveredRoute === route.id ? "4" : "3"}
+                            fill={selectedRoute?.id === route.id ? '#f59e0b' : hoveredRoute === route.id ? '#fbbf24' : '#60a5fa'}
+                            stroke="#ffffff"
+                            strokeWidth="1.5"
+                            className="cursor-pointer transition-all duration-300"
+                            filter="url(#glow)"
+                            onMouseEnter={() => setHoveredRoute(route.id)}
+                            onMouseLeave={() => setHoveredRoute(null)}
+                            onClick={() => setSelectedRoute(route)}
+                          />
+                          {(hoveredRoute === route.id || selectedRoute?.id === route.id) && (
+                            <>
+                              <rect
+                                x={route.coords.x - 18}
+                                y={route.coords.y - 13}
+                                width="36"
+                                height="8"
+                                fill="#1e293b"
+                                rx="2"
+                                opacity="0.95"
+                                filter="url(#glow)"
+                              />
+                              <text 
+                                x={route.coords.x} 
+                                y={route.coords.y - 7.5} 
+                                textAnchor="middle" 
+                                className="text-[3.2px] font-bold fill-white"
+                              >
+                                {route.city}
+                              </text>
+                            </>
+                          )}
+                        </g>
+                      ))}
+                      
+                      <text x="110" y="10" textAnchor="middle" className="text-[2.5px] fill-blue-200 font-medium" opacity="0.6">Северный Ледовитый океан</text>
+                      <text x="195" y="75" textAnchor="middle" className="text-[2.5px] fill-blue-200 font-medium" opacity="0.6">Тихий океан</text>
+                    </svg>
                   </div>
                   <div className="mt-3 flex items-center justify-center gap-2 text-xs text-gray-600 bg-gradient-to-r from-blue-50 to-orange-50 rounded-lg p-2">
                     <Icon name="MousePointer2" size={14} className="text-blue-600 animate-bounce" />
