@@ -8,14 +8,16 @@ import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
+import RouteMap from '@/components/RouteMap';
 
 const routes = [
   { 
     id: 1, 
-    city: 'Казань', 
-    distance: 800, 
-    days: '2-3 дня', 
-    coords: { x: 49, y: 56 }, 
+    city: 'Казань',
+    region: 'Республика Татарстан', 
+    distance: '800 км', 
+    duration: '2-3 дня', 
+    coords: { lat: 55.7964, lng: 49.1089, x: 49, y: 56 }, 
     priceStandard: 8000, 
     priceComfort: 12000, 
     pricePremium: 16000,
@@ -27,10 +29,11 @@ const routes = [
   },
   { 
     id: 2, 
-    city: 'Санкт-Петербург', 
-    distance: 700, 
-    days: '2-3 дня', 
-    coords: { x: 30, y: 60 }, 
+    city: 'Санкт-Петербург',
+    region: 'Ленинградская область', 
+    distance: '700 км', 
+    duration: '2-3 дня', 
+    coords: { lat: 59.9343, lng: 30.3351, x: 30, y: 60 }, 
     priceStandard: 7000, 
     priceComfort: 10000, 
     pricePremium: 14000,
@@ -42,10 +45,11 @@ const routes = [
   },
   { 
     id: 3, 
-    city: 'Сочи', 
-    distance: 1600, 
-    days: '4-5 дней', 
-    coords: { x: 40, y: 44 }, 
+    city: 'Сочи',
+    region: 'Краснодарский край', 
+    distance: '1600 км', 
+    duration: '4-5 дней', 
+    coords: { lat: 43.6028, lng: 39.7342, x: 40, y: 44 }, 
     priceStandard: 16000, 
     priceComfort: 24000, 
     pricePremium: 32000,
@@ -57,10 +61,11 @@ const routes = [
   },
   { 
     id: 4, 
-    city: 'Екатеринбург', 
-    distance: 1800, 
-    days: '4-6 дней', 
-    coords: { x: 61, y: 57 }, 
+    city: 'Екатеринбург',
+    region: 'Свердловская область', 
+    distance: '1800 км', 
+    duration: '4-6 дней', 
+    coords: { lat: 56.8389, lng: 60.6057, x: 61, y: 57 }, 
     priceStandard: 18000, 
     priceComfort: 27000, 
     pricePremium: 36000,
@@ -72,10 +77,11 @@ const routes = [
   },
   { 
     id: 5, 
-    city: 'Нижний Новгород', 
-    distance: 420, 
-    days: '1-2 дня', 
-    coords: { x: 44, y: 56 }, 
+    city: 'Нижний Новгород',
+    region: 'Нижегородская область', 
+    distance: '420 км', 
+    duration: '1-2 дня', 
+    coords: { lat: 56.2965, lng: 43.9361, x: 44, y: 56 }, 
     priceStandard: 4200, 
     priceComfort: 6000, 
     pricePremium: 8400,
@@ -87,10 +93,11 @@ const routes = [
   },
   { 
     id: 6, 
-    city: 'Ярославль', 
-    distance: 270, 
-    days: '1 день', 
-    coords: { x: 40, y: 58 }, 
+    city: 'Ярославль',
+    region: 'Ярославская область', 
+    distance: '270 км', 
+    duration: '1 день', 
+    coords: { lat: 57.6261, lng: 39.8845, x: 40, y: 58 }, 
     priceStandard: 2700, 
     priceComfort: 4000, 
     pricePremium: 5400,
@@ -102,10 +109,11 @@ const routes = [
   },
   { 
     id: 7, 
-    city: 'Новосибирск', 
-    distance: 3300, 
-    days: '8-10 дней', 
-    coords: { x: 83, y: 55 }, 
+    city: 'Новосибирск',
+    region: 'Новосибирская область', 
+    distance: '3300 км', 
+    duration: '8-10 дней', 
+    coords: { lat: 55.0084, lng: 82.9357, x: 83, y: 55 }, 
     priceStandard: 33000, 
     priceComfort: 50000, 
     pricePremium: 66000,
@@ -117,10 +125,11 @@ const routes = [
   },
   { 
     id: 8, 
-    city: 'Краснодар', 
-    distance: 1350, 
-    days: '3-4 дня', 
-    coords: { x: 39, y: 46 }, 
+    city: 'Краснодар',
+    region: 'Краснодарский край', 
+    distance: '1350 км', 
+    duration: '3-4 дня', 
+    coords: { lat: 45.0355, lng: 38.9753, x: 39, y: 46 }, 
     priceStandard: 13500, 
     priceComfort: 20000, 
     pricePremium: 27000,
@@ -132,10 +141,11 @@ const routes = [
   },
   { 
     id: 9, 
-    city: 'Владивосток', 
-    distance: 9200, 
-    days: '20-25 дней', 
-    coords: { x: 132, y: 43 }, 
+    city: 'Владивосток',
+    region: 'Приморский край', 
+    distance: '9200 км', 
+    duration: '20-25 дней', 
+    coords: { lat: 43.1056, lng: 131.8735, x: 132, y: 43 }, 
     priceStandard: 92000, 
     priceComfort: 138000, 
     pricePremium: 184000,
@@ -147,10 +157,11 @@ const routes = [
   },
   { 
     id: 10, 
-    city: 'Воронеж', 
-    distance: 520, 
-    days: '1-2 дня', 
-    coords: { x: 40, y: 52 }, 
+    city: 'Воронеж',
+    region: 'Воронежская область', 
+    distance: '520 км', 
+    duration: '1-2 дня', 
+    coords: { lat: 51.6720, lng: 39.1843, x: 40, y: 52 }, 
     priceStandard: 5200, 
     priceComfort: 7800, 
     pricePremium: 10400,
@@ -162,10 +173,11 @@ const routes = [
   },
   { 
     id: 11, 
-    city: 'Ростов-на-Дону', 
-    distance: 1100, 
-    days: '3 дня', 
-    coords: { x: 40, y: 48 }, 
+    city: 'Ростов-на-Дону',
+    region: 'Ростовская область', 
+    distance: '1100 км', 
+    duration: '3 дня', 
+    coords: { lat: 47.2357, lng: 39.7015, x: 40, y: 48 }, 
     priceStandard: 11000, 
     priceComfort: 16500, 
     pricePremium: 22000,
@@ -177,10 +189,11 @@ const routes = [
   },
   { 
     id: 12, 
-    city: 'Иркутск', 
-    distance: 5200, 
-    days: '12-15 дней', 
-    coords: { x: 104, y: 52 }, 
+    city: 'Иркутск',
+    region: 'Иркутская область', 
+    distance: '5200 км', 
+    duration: '12-15 дней', 
+    coords: { lat: 52.2978, lng: 104.2964, x: 104, y: 52 }, 
     priceStandard: 52000, 
     priceComfort: 78000, 
     pricePremium: 104000,
@@ -309,75 +322,12 @@ export default function Index() {
                       {routes.length} городов
                     </Badge>
                   </div>
-                  <div className="relative w-full aspect-[2.2/1] rounded-xl overflow-hidden shadow-inner border-2 border-blue-300">
-                    <img 
-                      src="https://cdn.poehali.dev/projects/cdb115cf-04fc-4b69-a392-036f0de79f80/bucket/4b37ab87-47fb-4435-b959-a6dcbf29806d.PNG" 
-                      alt="Карта России" 
-                      className="absolute inset-0 w-full h-full object-cover"
+                  <div className="relative w-full h-[450px] rounded-xl overflow-hidden shadow-inner border-2 border-blue-300">
+                    <RouteMap 
+                      routes={routes}
+                      selectedRoute={selectedRoute}
+                      onRouteSelect={setSelectedRoute}
                     />
-                    <svg viewBox="0 0 220 100" className="absolute inset-0 w-full h-full">
-                      <defs>
-                        <filter id="glow">
-                          <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
-                          <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                          </feMerge>
-                        </filter>
-                        <radialGradient id="moscowGlow">
-                          <stop offset="0%" stopColor="#ef4444" stopOpacity="1"/>
-                          <stop offset="100%" stopColor="#dc2626" stopOpacity="0"/>
-                        </radialGradient>
-                      </defs>
-                      
-                      <circle cx="37" cy="56" r="8" fill="url(#moscowGlow)" className="animate-pulse" opacity="0.5" />
-                      <circle cx="37" cy="56" r="4" fill="#dc2626" filter="url(#glow)" />
-                      <circle cx="37" cy="56" r="2" fill="#ffffff" />
-                      <text x="37" y="49" textAnchor="middle" className="text-[3.5px] font-black fill-white drop-shadow-lg">МОСКВА</text>
-                      
-                      {routes.map(route => (
-                        <g key={route.id}>
-                          <circle 
-                            cx={route.coords.x} 
-                            cy={route.coords.y} 
-                            r={selectedRoute?.id === route.id ? "5" : hoveredRoute === route.id ? "4" : "3"}
-                            fill={selectedRoute?.id === route.id ? '#f59e0b' : hoveredRoute === route.id ? '#fbbf24' : '#60a5fa'}
-                            stroke="#ffffff"
-                            strokeWidth="1.5"
-                            className="cursor-pointer transition-all duration-300"
-                            filter="url(#glow)"
-                            onMouseEnter={() => setHoveredRoute(route.id)}
-                            onMouseLeave={() => setHoveredRoute(null)}
-                            onClick={() => setSelectedRoute(route)}
-                          />
-                          {(hoveredRoute === route.id || selectedRoute?.id === route.id) && (
-                            <>
-                              <rect
-                                x={route.coords.x - 18}
-                                y={route.coords.y - 13}
-                                width="36"
-                                height="8"
-                                fill="#1e293b"
-                                rx="2"
-                                opacity="0.95"
-                                filter="url(#glow)"
-                              />
-                              <text 
-                                x={route.coords.x} 
-                                y={route.coords.y - 7.5} 
-                                textAnchor="middle" 
-                                className="text-[3.2px] font-bold fill-white"
-                              >
-                                {route.city}
-                              </text>
-                            </>
-                          )}
-                        </g>
-                      ))}
-                      
-                      <text x="110" y="10" textAnchor="middle" className="text-[2.5px] fill-blue-200 font-medium" opacity="0.6">Северный Ледовитый океан</text>
-                      <text x="195" y="75" textAnchor="middle" className="text-[2.5px] fill-blue-200 font-medium" opacity="0.6">Тихий океан</text>
-                    </svg>
                   </div>
                   <div className="mt-3 flex items-center justify-center gap-2 text-xs text-gray-600 bg-gradient-to-r from-blue-50 to-orange-50 rounded-lg p-2">
                     <Icon name="MousePointer2" size={14} className="text-blue-600 animate-bounce" />
