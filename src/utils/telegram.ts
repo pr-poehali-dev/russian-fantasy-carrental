@@ -72,22 +72,25 @@ export async function sendToTelegram(data: FormData): Promise<void> {
     ? formatBookingMessage(data) 
     : formatPartnerMessage(data);
   
-  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+  const params = new URLSearchParams({
+    chat_id: TELEGRAM_CHAT_ID,
+    text: message,
+    parse_mode: 'HTML',
+  });
   
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      chat_id: TELEGRAM_CHAT_ID,
-      text: message,
-      parse_mode: 'HTML',
-    }),
+  const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?${params}`;
+  
+  const response = await fetch(telegramUrl, {
+    method: 'GET',
   });
   
   if (!response.ok) {
-    const error = await response.json();
+    const error = await response.json().catch(() => ({ error: 'Unknown error' }));
     throw new Error(`Telegram API error: ${JSON.stringify(error)}`);
+  }
+  
+  const result = await response.json();
+  if (!result.ok) {
+    throw new Error(`Telegram API error: ${JSON.stringify(result)}`);
   }
 }
