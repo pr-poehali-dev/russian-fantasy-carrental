@@ -41,16 +41,16 @@ export default function Partners() {
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg">
-                <div className="text-3xl font-bold">до 90 000₽</div>
-                <div className="text-sm text-white/90">в месяц</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg">
                 <div className="text-3xl font-bold">70%</div>
                 <div className="text-sm text-white/90">вам от аренды</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg">
-                <div className="text-3xl font-bold">0₽</div>
-                <div className="text-sm text-white/90">комиссия за вход</div>
+                <div className="text-3xl font-bold">24/7</div>
+                <div className="text-sm text-white/90">поддержка</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-lg">
+                <div className="text-3xl font-bold">100%</div>
+                <div className="text-sm text-white/90">легально</div>
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default function Partners() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">Собственное СТО</h3>
                 <p className="text-muted-foreground">
-                  В середине 2025 года открываем собственное СТО для обслуживания всех автомобилей партнёров. Гарантии качества и выгодные цены на ТО!
+                  В середине 2026 года открываем собственное СТО для обслуживания всех автомобилей партнёров. Гарантии качества и выгодные цены на ТО!
                 </p>
               </CardContent>
             </Card>
@@ -365,7 +365,7 @@ export default function Partners() {
               <CardContent className="pt-6 pb-6 px-6">
                 <h3 className="font-bold text-lg mb-2">Кто оплачивает ремонт и ТО?</h3>
                 <p className="text-muted-foreground">
-                  Страхование и техобслуживание остаются на вашей стороне. Но с открытием собственного СТО в 2025 г. партнёры получат выгодные цены на обслуживание и гарантии качества!
+                  Страхование и техобслуживание остаются на вашей стороне. Но с открытием собственного СТО в 2026 г. партнёры получат выгодные цены на обслуживание и гарантии качества!
                 </p>
               </CardContent>
             </Card>
