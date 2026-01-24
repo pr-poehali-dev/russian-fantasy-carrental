@@ -12,6 +12,7 @@ import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
 export default function Index() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [pickupCity, setPickupCity] = useState('');
   const [returnDifferentCity, setReturnDifferentCity] = useState(false);
   const [dateRange, setDateRange] = useState<{ from: Date | undefined; to: Date | undefined }>({
@@ -52,10 +53,24 @@ export default function Index() {
               <a href="#reviews" className="text-sm hover:text-primary transition">Отзывы</a>
               <Button size="sm" className="bg-primary hover:bg-primary/90">Забронировать</Button>
             </div>
-            <button className="lg:hidden">
-              <Icon name="Menu" size={20} />
+            <button className="lg:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <Icon name={mobileMenuOpen ? "X" : "Menu"} size={20} />
             </button>
           </div>
+
+          {/* Мобильное меню */}
+          {mobileMenuOpen && (
+            <div className="lg:hidden py-4 border-t">
+              <div className="flex flex-col space-y-3">
+                <a href="#autopark" className="text-sm hover:text-primary transition py-2" onClick={() => setMobileMenuOpen(false)}>Автопарк</a>
+                <a href="/conditions" className="text-sm hover:text-primary transition py-2" onClick={() => setMobileMenuOpen(false)}>Условия аренды</a>
+                <a href="/about" className="text-sm hover:text-primary transition py-2" onClick={() => setMobileMenuOpen(false)}>О компании</a>
+                <a href="#pricing" className="text-sm hover:text-primary transition py-2" onClick={() => setMobileMenuOpen(false)}>Стоимость</a>
+                <a href="#reviews" className="text-sm hover:text-primary transition py-2" onClick={() => setMobileMenuOpen(false)}>Отзывы</a>
+                <Button size="sm" className="bg-primary hover:bg-primary/90 w-full">Забронировать</Button>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
