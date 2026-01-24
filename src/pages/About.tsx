@@ -48,9 +48,8 @@ export default function About() {
               автомобили, прозрачные условия аренды и профессиональный сервис.
             </p>
             <p className="text-lg text-muted-foreground">
-              Наши офисы работают в трех крупнейших городах России: Краснодаре, Москве и Санкт-Петербурге.
-              Это позволяет арендовать автомобиль в одном городе, а вернуть в другом — удобно для
-              путешествий!
+              Наш офис работает в Москве — сердце России. Мы предоставляем качественный сервис аренды микроавтобусов
+              для путешествий по всей стране.
             </p>
           </div>
 
@@ -161,26 +160,10 @@ export default function About() {
             </div>
           </div>
 
-          {/* Наши офисы */}
+          {/* Наш офис */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 text-center">Наши офисы</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <Icon name="MapPin" className="text-primary" size={24} />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">Краснодар</h3>
-                  <p className="text-muted-foreground mb-4">
-                    ул. Примерная, 1<br />
-                    +7 (900) 123-45-67
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Пн-Вс: 08:00 — 22:00
-                  </p>
-                </CardContent>
-              </Card>
-
+            <h2 className="text-3xl font-bold mb-8 text-center">Наш офис</h2>
+            <div className="max-w-md mx-auto">
               <Card>
                 <CardContent className="pt-6">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
@@ -188,24 +171,8 @@ export default function About() {
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Москва</h3>
                   <p className="text-muted-foreground mb-4">
-                    ул. Тестовая, 10<br />
-                    +7 (900) 123-45-68
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Пн-Вс: 08:00 — 22:00
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <Icon name="MapPin" className="text-primary" size={24} />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">Санкт-Петербург</h3>
-                  <p className="text-muted-foreground mb-4">
-                    пр. Демонстрационный, 5<br />
-                    +7 (900) 123-45-69
+                    ул. Примерная, 1<br />
+                    +7 (900) 123-45-67
                   </p>
                   <p className="text-sm text-muted-foreground">
                     Пн-Вс: 08:00 — 22:00
@@ -237,7 +204,7 @@ export default function About() {
                 <span className="text-xl font-bold">Русская Фантазия</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Аренда микроавтобусов в Краснодаре, Москве и Санкт-Петербурге
+                Аренда микроавтобусов в Москве
               </p>
             </div>
             <div>
@@ -262,7 +229,7 @@ export default function About() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Icon name="MapPin" size={16} />
-                  <span>Краснодар, ул. Примерная, 1</span>
+                  <span>Москва, ул. Примерная, 1</span>
                 </li>
               </ul>
             </div>

@@ -219,7 +219,7 @@ export default function Conditions() {
                 <span className="text-xl font-bold">Русская Фантазия</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Аренда микроавтобусов в Краснодаре, Москве и Санкт-Петербурге
+                Аренда микроавтобусов в Москве
               </p>
             </div>
             <div>
@@ -244,7 +244,7 @@ export default function Conditions() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Icon name="MapPin" size={16} />
-                  <span>Краснодар, ул. Примерная, 1</span>
+                  <span>Москва, ул. Примерная, 1</span>
                 </li>
               </ul>
             </div>

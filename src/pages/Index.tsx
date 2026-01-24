@@ -10,8 +10,11 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import Icon from '@/components/ui/icon';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
+import { sendToTelegram } from '@/utils/telegram';
+import { useToast } from '@/hooks/use-toast';
 
 export default function Index() {
+  const { toast } = useToast();
   const [pickupCity, setPickupCity] = useState('');
   const [returnDifferentCity, setReturnDifferentCity] = useState(false);
   const [dateRange, setDateRange] = useState<{ from: Date | undefined; to: Date | undefined }>({
@@ -25,8 +28,65 @@ export default function Index() {
   const [fridge, setFridge] = useState(false);
   const [delivery, setDelivery] = useState(false);
   const [abroad, setAbroad] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const cities = ['Краснодар', 'Москва', 'Санкт-Петербург'];
+  const handleBookingSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!pickupCity || !dateRange.from || !dateRange.to || !mileage) {
+      toast({
+        title: 'Ошибка',
+        description: 'Пожалуйста, заполните все обязательные поля',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      const dateRangeStr = `${format(dateRange.from, 'dd.MM.yyyy', { locale: ru })} - ${format(dateRange.to, 'dd.MM.yyyy', { locale: ru })}`;
+      
+      await sendToTelegram({
+        formType: 'booking',
+        pickupCity,
+        returnDifferentCity,
+        dateRange: dateRangeStr,
+        mileage,
+        childSeats,
+        transponder,
+        roofBox,
+        fridge,
+        delivery,
+        abroad,
+      });
+      
+      toast({
+        title: 'Заявка отправлена!',
+        description: 'Мы свяжемся с вами в ближайшее время',
+      });
+      
+      setPickupCity('');
+      setDateRange({ from: undefined, to: undefined });
+      setMileage('');
+      setChildSeats(false);
+      setTransponder(false);
+      setRoofBox(false);
+      setFridge(false);
+      setDelivery(false);
+      setAbroad(false);
+    } catch (error) {
+      toast({
+        title: 'Ошибка',
+        description: 'Не удалось отправить заявку. Попробуйте позже.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const cities = ['Москва'];
 
   const autoImages = [
     'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?w=800',
@@ -93,7 +153,7 @@ export default function Index() {
             <Card className="shadow-xl">
               <CardContent className="p-5">
                 <h3 className="text-lg font-bold mb-4 text-primary">Забронировать автомобиль</h3>
-                <form className="space-y-3">
+                <form className="space-y-3" onSubmit={handleBookingSubmit}>
                   <div>
                     <Label htmlFor="pickup-city" className="text-sm font-medium mb-1">Город выдачи авто</Label>
                     <Select value={pickupCity} onValueChange={setPickupCity}>
@@ -198,8 +258,8 @@ export default function Index() {
                     </div>
                   </div>
 
-                  <Button type="submit" className="w-full h-10 text-sm font-semibold">
-                    Найти автомобиль
+                  <Button type="submit" className="w-full h-10 text-sm font-semibold" disabled={isSubmitting}>
+                    {isSubmitting ? 'Отправка...' : 'Найти автомобиль'}
                   </Button>
                 </form>
               </CardContent>
@@ -431,12 +491,12 @@ export default function Index() {
               },
               {
                 name: 'Мария Сидорова',
-                city: 'Санкт-Петербург',
+                city: 'Москва',
                 text: 'Прекрасный автомобиль для семейной поездки. Менеджеры помогли со всеми вопросами. Очень довольны!',
               },
               {
                 name: 'Александр Иванов',
-                city: 'Краснодар',
+                city: 'Москва',
                 text: 'Арендовали на неделю для поездки по югу. Машина вместительная, удобная. Цена адекватная. Рекомендую!',
               },
             ].map((review, i) => (
@@ -496,7 +556,7 @@ export default function Index() {
                 <span className="text-base font-bold text-white">Русская Фантазия</span>
               </div>
               <p className="text-sm text-gray-400">
-                Аренда микроавтобусов в Краснодаре, Москве и Санкт-Петербурге
+                Аренда микроавтобусов в Москве
               </p>
             </div>
             <div>
@@ -521,7 +581,7 @@ export default function Index() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Icon name="MapPin" size={16} className="text-primary" />
-                  <span>Краснодар, ул. Примерная, 1</span>
+                  <span>Москва, ул. Примерная, 1</span>
                 </li>
               </ul>
             </div>

@@ -1,11 +1,67 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
+import { sendToTelegram } from '@/utils/telegram';
+import { useToast } from '@/hooks/use-toast';
 
 export default function Partners() {
+  const { toast } = useToast();
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [car, setCar] = useState('');
+  const [year, setYear] = useState('');
+  const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!name || !phone || !car || !year) {
+      toast({
+        title: 'Ошибка',
+        description: 'Пожалуйста, заполните все обязательные поля',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      await sendToTelegram({
+        formType: 'partner',
+        name,
+        phone,
+        car,
+        year,
+        message,
+      });
+      
+      toast({
+        title: 'Заявка отправлена!',
+        description: 'Мы свяжемся с вами в течение часа',
+      });
+      
+      setName('');
+      setPhone('');
+      setCar('');
+      setYear('');
+      setMessage('');
+    } catch (error) {
+      toast({
+        title: 'Ошибка',
+        description: 'Не удалось отправить заявку. Попробуйте позже.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen">
       {/* Навигация */}
@@ -285,25 +341,25 @@ export default function Partners() {
             </p>
             <Card className="shadow-xl">
               <CardContent className="pt-8 pb-8 px-8">
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div>
                     <Label htmlFor="name" className="text-base font-semibold mb-2">Ваше имя</Label>
-                    <Input id="name" placeholder="Иван Иванов" className="h-12" />
+                    <Input id="name" placeholder="Иван Иванов" className="h-12" value={name} onChange={(e) => setName(e.target.value)} required />
                   </div>
 
                   <div>
                     <Label htmlFor="phone" className="text-base font-semibold mb-2">Телефон</Label>
-                    <Input id="phone" type="tel" placeholder="+7 (___) ___-__-__" className="h-12" />
+                    <Input id="phone" type="tel" placeholder="+7 (___) ___-__-__" className="h-12" value={phone} onChange={(e) => setPhone(e.target.value)} required />
                   </div>
 
                   <div>
                     <Label htmlFor="car" className="text-base font-semibold mb-2">Марка и модель автомобиля</Label>
-                    <Input id="car" placeholder="Hyundai Grand Starex" className="h-12" />
+                    <Input id="car" placeholder="Hyundai Grand Starex" className="h-12" value={car} onChange={(e) => setCar(e.target.value)} required />
                   </div>
 
                   <div>
                     <Label htmlFor="year" className="text-base font-semibold mb-2">Год выпуска</Label>
-                    <Input id="year" type="number" placeholder="2017" className="h-12" />
+                    <Input id="year" type="number" placeholder="2017" className="h-12" value={year} onChange={(e) => setYear(e.target.value)} required />
                   </div>
 
                   <div>
@@ -312,11 +368,13 @@ export default function Partners() {
                       id="message" 
                       placeholder="Расскажите о состоянии автомобиля, пробеге, комплектации..."
                       className="min-h-32"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                     />
                   </div>
 
-                  <Button type="submit" className="w-full h-14 text-lg font-semibold">
-                    Отправить заявку
+                  <Button type="submit" className="w-full h-14 text-lg font-semibold" disabled={isSubmitting}>
+                    {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
                   </Button>
 
                   <p className="text-sm text-muted-foreground text-center">
