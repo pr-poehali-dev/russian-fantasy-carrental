@@ -1,0 +1,49 @@
+{
+  "tests": [
+    {
+      "name": "Test OPTIONS request",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": "",
+      "bodyMatcher": "exact"
+    },
+    {
+      "name": "Test booking form submission",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "formType": "booking",
+        "pickupCity": "Краснодар",
+        "returnDifferentCity": false,
+        "dateRange": "01.02.2025 - 05.02.2025",
+        "mileage": "500",
+        "childSeats": true,
+        "transponder": false
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test partner form submission",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "formType": "partner",
+        "name": "Иван Иванов",
+        "phone": "+7 999 123-45-67",
+        "car": "Hyundai Grand Starex",
+        "year": "2017",
+        "message": "Хочу сдать автомобиль в аренду"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
