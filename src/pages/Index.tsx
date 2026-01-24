@@ -309,11 +309,16 @@ export default function Index() {
                       {routes.length} городов
                     </Badge>
                   </div>
-                  <div className="relative w-full aspect-[2.2/1] bg-gradient-to-br from-blue-900 to-indigo-950 rounded-xl overflow-hidden shadow-inner border-2 border-blue-300">
-                    <svg viewBox="0 0 220 100" className="w-full h-full">
+                  <div className="relative w-full aspect-[2.2/1] rounded-xl overflow-hidden shadow-inner border-2 border-blue-300">
+                    <img 
+                      src="https://cdn.poehali.dev/projects/cdb115cf-04fc-4b69-a392-036f0de79f80/bucket/4b37ab87-47fb-4435-b959-a6dcbf29806d.PNG" 
+                      alt="Карта России" 
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <svg viewBox="0 0 220 100" className="absolute inset-0 w-full h-full">
                       <defs>
                         <filter id="glow">
-                          <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
                           <feMerge>
                             <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="SourceGraphic"/>
@@ -323,68 +328,45 @@ export default function Index() {
                           <stop offset="0%" stopColor="#ef4444" stopOpacity="1"/>
                           <stop offset="100%" stopColor="#dc2626" stopOpacity="0"/>
                         </radialGradient>
-                        <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.6"/>
-                          <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.9"/>
-                        </linearGradient>
                       </defs>
                       
-                      <path d="M 15 60 L 12 50 L 10 38 L 10 28 L 13 20 L 18 14 L 25 10 L 35 8 L 48 7 L 62 7 L 78 8 L 95 10 L 112 13 L 128 17 L 143 22 L 156 28 L 168 36 L 178 45 L 186 54 L 192 63 L 196 72 L 198 80 L 196 86 L 190 90 L 180 92 L 165 93 L 148 92 L 130 90 L 110 87 L 88 82 L 68 76 L 48 69 L 32 63 L 20 58 Z" 
-                        fill="none" 
-                        stroke="#60a5fa" 
-                        strokeWidth="1.2" 
-                        opacity="0.6"
-                        filter="url(#glow)"
-                      />
-                      
-                      <circle cx="37" cy="56" r="6" fill="url(#moscowGlow)" className="animate-pulse" opacity="0.7" />
-                      <circle cx="37" cy="56" r="3" fill="#dc2626" filter="url(#glow)" />
-                      <circle cx="37" cy="56" r="1.5" fill="#ffffff" />
+                      <circle cx="37" cy="56" r="8" fill="url(#moscowGlow)" className="animate-pulse" opacity="0.5" />
+                      <circle cx="37" cy="56" r="4" fill="#dc2626" filter="url(#glow)" />
+                      <circle cx="37" cy="56" r="2" fill="#ffffff" />
                       <text x="37" y="49" textAnchor="middle" className="text-[3.5px] font-black fill-white drop-shadow-lg">МОСКВА</text>
                       
                       {routes.map(route => (
                         <g key={route.id}>
-                          <line 
-                            x1="37" 
-                            y1="56" 
-                            x2={route.coords.x} 
-                            y2={route.coords.y} 
-                            stroke={selectedRoute?.id === route.id ? '#f59e0b' : hoveredRoute === route.id ? '#fbbf24' : 'url(#routeGradient)'} 
-                            strokeWidth={selectedRoute?.id === route.id ? "1.2" : hoveredRoute === route.id ? "1" : "0.5"}
-                            strokeDasharray="3,2" 
-                            className="transition-all duration-500"
-                            opacity={selectedRoute?.id === route.id ? "0.9" : hoveredRoute === route.id ? "0.7" : "0.3"}
-                            filter={selectedRoute?.id === route.id || hoveredRoute === route.id ? 'url(#glow)' : ''}
-                          />
                           <circle 
                             cx={route.coords.x} 
                             cy={route.coords.y} 
-                            r={selectedRoute?.id === route.id ? "3.5" : hoveredRoute === route.id ? "3" : "2.2"}
+                            r={selectedRoute?.id === route.id ? "5" : hoveredRoute === route.id ? "4" : "3"}
                             fill={selectedRoute?.id === route.id ? '#f59e0b' : hoveredRoute === route.id ? '#fbbf24' : '#60a5fa'}
                             stroke="#ffffff"
-                            strokeWidth="0.8"
+                            strokeWidth="1.5"
                             className="cursor-pointer transition-all duration-300"
                             filter="url(#glow)"
                             onMouseEnter={() => setHoveredRoute(route.id)}
                             onMouseLeave={() => setHoveredRoute(null)}
                             onClick={() => setSelectedRoute(route)}
                           />
-                          {hoveredRoute === route.id && (
+                          {(hoveredRoute === route.id || selectedRoute?.id === route.id) && (
                             <>
                               <rect
-                                x={route.coords.x - 16}
-                                y={route.coords.y - 12}
-                                width="32"
-                                height="7"
+                                x={route.coords.x - 18}
+                                y={route.coords.y - 13}
+                                width="36"
+                                height="8"
                                 fill="#1e293b"
-                                rx="1.5"
+                                rx="2"
                                 opacity="0.95"
+                                filter="url(#glow)"
                               />
                               <text 
                                 x={route.coords.x} 
                                 y={route.coords.y - 7.5} 
                                 textAnchor="middle" 
-                                className="text-[3px] font-bold fill-white"
+                                className="text-[3.2px] font-bold fill-white"
                               >
                                 {route.city}
                               </text>
