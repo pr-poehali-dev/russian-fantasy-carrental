@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import { Icon as LeafletIcon, LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useEffect } from 'react';
+import { useEffect, Fragment } from 'react';
 
 interface Route {
   id: number;
@@ -86,7 +86,7 @@ export default function RouteMap({ routes, selectedRoute, onRouteSelect }: Route
         const isSelected = selectedRoute?.id === route.id;
         
         return (
-          <div key={route.id}>
+          <Fragment key={route.id}>
             <Marker
               position={routeCoords}
               icon={createIcon(isSelected)}
@@ -114,7 +114,7 @@ export default function RouteMap({ routes, selectedRoute, onRouteSelect }: Route
                 dashArray="10, 10"
               />
             )}
-          </div>
+          </Fragment>
         );
       })}
     </MapContainer>
